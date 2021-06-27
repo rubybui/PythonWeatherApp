@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>weather</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <nav class="row" style="background: green; color: white;">
+    <h1 class="col-md-3 text-center">weather</h1>
+  </nav>
+  <br />
+  <br />
+  <center class="row">
+    <form method="post" class="col-md-6 col-md-offset-3">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+        <form>
+  </center>
+  <div class="row">
+    {% if country_code and coordinate and temp and pressure and humidity %}
+    <div class="col-md-6 col-md-offset-3">
+
+        <p>
+          <div class="row">
+          <div class="col-6 col-sm-4 col-md-3 p-2">
+            <div class="card card-body">
+              <h4 class="card-title text-center">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#coordinate" aria-expanded="false" aria-controls= "coordinate" style= "background:green">City's Coordinate: </button>
+              </h4>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 p-2">
+          <div class="card card-body">
+            <h4 class="card-title text-center">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#weather" aria-expanded="false" aria-controls="weather" style= "background:green">Weather</button>
+        </h4>
+      </div>
+        </div>
+          <div class="col-6 col-sm-4 col-md-3 p-2">
+            <div class="card card-body">
+              <h4 class="card-title text-center">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sun" aria-expanded="false" aria-controls="sun" style= "background:green">sunset of {{day}}</button>
+        </h4>
+      </div>
+        </div>
+      </div>
+        </p>
+
+        <div class="row">
+          <div class="col-6 col-sm-4 col-md-3 p-2">
+            <div class="collapse multi-collapse" id="coordinate">
+              <div class="card card-body">
+                <h4 class="card-title text-center">Coordinate: {{coordinate}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-sm-4 col-md-3 p-2">
+            <div class="collapse multi-collapse" id="weather">
+              <div class="card h-100">
+                <h4 class="card-title text-center">Temparature : {{temp}}</h4>
+              </div>
+              <div class="card h-100">
+                <h4 class="card-title text-center"> Pressure: {{pressure}}</h4>
+              </div>
+              <div class="card h-100">
+                <h4 class="card-title text-center">Humidity: {{humidity}}</h4>
+              </div>
+                
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3 p-2">
+              <div class="collapse multi-collapse" id="sun">
+                <div class="card card-body">
+                  <h4 class="card-title text-center">Sunset Time: {{sunset}}</h4> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+  </div>
